@@ -7,6 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      <nixos-hardware/lenovo/legion/16achg6/hybrid>
       ./hardware-configuration.nix
     ];
 
