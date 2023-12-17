@@ -139,8 +139,14 @@
     ffmpeg
     libnotify
     killall
+    pfetch
+    alacritty
+    eza
+    starship
 
     #Hyprland Specific
+    pywal
+    gum
     blueman
     btop
     cava
@@ -196,6 +202,33 @@
 
 
   ];
+
+
+  fonts = {
+    packages = with pkgs; [
+      fira-code-nerdfont
+      fira-code
+      fira
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      font-awesome
+      source-han-sans
+      source-han-sans-japanese
+      source-han-serif-japanese
+      (nerdfonts.override { fonts = [ "Meslo" ]; })
+    ];
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+	      monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
+	      serif = [ "Noto Serif" "Source Han Serif" ];
+	      sansSerif = [ "Noto Sans" "Source Han Sans" ];
+      };
+    };
+  };
+
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
