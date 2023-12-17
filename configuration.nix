@@ -50,12 +50,17 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  ##############################
   # Hyprland
-  programs.hyprland = {    
+  ##############################
+  programs.hyprland = {
     enable = true;
-    xwayland.enable = true;    
-    nvidiaPatches = true; 
+    xwayland.enable = true;
+    enableNvidiaPatches = true;
   };
+  
+  programs.xwayland.enable = true;
+  xdg.portal.enable = true;
 
   environment.sessionVariables = {
     #If your cursor becomes invisible
@@ -71,6 +76,10 @@
     #Most wayland compositors need this
     nvidia.modesetting.enable = true;
   };
+
+  ##############################
+  # End Hyprland
+  ##############################
 
 
   # Configure keymap in X11
@@ -103,7 +112,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jakobe = {
@@ -122,11 +131,70 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     git
     github-desktop
     kitty
+    ffmpeg
+    libnotify
+    killall
+
+    #Hyprland Specific
+    blueman
+    btop
+    cava
+    cliphist
+    dunst
+    gnome.eog
+    gnome.gnome-system-monitor
+    gnome.file-roller
+    grim
+    jq
+    kitty
+    pcmanfm
+    networkmanagerapplet
+    nwg-look # requires unstable channel
+    nvtop
+    pamixer
+    pavucontrol
+    polkit_gnome
+    slurp
+    shotcut
+    swappy
+    swaybg
+    swayidle
+    swaylock-effects
+    swww
+    qt5ct
+    qt6ct
+    rofi-wayland
+    wl-clipboard
+    wlogout
+    yad
+    #hardware-acceleration
+    libva
+    libva-utils
+
+    #nvidia-specific hardware acceleration
+    libvdpau
+    libvdpau-va-gl 
+    nvidia-vaapi-driver
+    vaapiVdpau
+    vdpauinfo
+
+    discord
+    #flatpak
+    glxinfo
+    vscodium
+			
+    # Hyprland to work well
+    brightnessctl
+    qt6.qtwayland
+    xdg-desktop-portal-hyprland
+    waybar
+
+
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
